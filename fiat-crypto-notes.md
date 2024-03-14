@@ -3,7 +3,7 @@
 ## Intro and landscape
 
 * Primitives: signature and encryption (or KEM).
-	* Motivation: NIST competition
+	* These two are important: mention NIST competition
 	* What is a signature?
 	* Encryption examples: Kyber, ECDH, homomomorphic
 	* Signature examples: Dilithium, ECDSA
