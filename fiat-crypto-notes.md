@@ -5,7 +5,7 @@
 * Primitives: signature and encryption (or KEM).
 	* These two are important: mention NIST competition
 	* What is a signature?
-	* Encryption examples: Kyber, ECDH, homomomorphic
+	* Encryption examples: Kyber, ECDH, homomorphic
 	* Signature examples: Dilithium, ECDSA
 * Applications: HTTPS, Payment Protocol, Cryptocurrency
 * Building block
