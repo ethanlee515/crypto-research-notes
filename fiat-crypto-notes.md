@@ -32,8 +32,10 @@
 	* Optimized elliptic curve operations
 	* Handwritten Coq proof
 	* Before CryptOpt: Output C code, 2x slower than handwritten asm, need to trust gcc
-	* CryptOpt (PLDI): Asm output from Fiat IR
-* Fiat IR = no loop. Can't do Dilithium, but homomorphic encryption could be fine.
+	* [CryptOpt](https://arxiv.org/abs/2211.10665) (PLDI): Asm output from Fiat IR
+* Fiat IR limitations
+	* No loop. Can't do Dilithium for example. E-graphs can't deal with loops.
+	* Deterministic. Might be annoying dealing with Gaussian sampling (i.e. from Falcon or some FHE).
 
 ## Homomorphic Encryption: Theory
 
@@ -55,7 +57,7 @@
 
 ## Homomorphic Encryption: Implementations
 
-* Google's [Transpiler](https://github.com/google/fully-homomorphic-encryption) and [HEIR](https://heir.dev/)
+* Google's [C++ Transpiler](https://github.com/google/fully-homomorphic-encryption) and [HEIR](https://heir.dev/)
 * Use the [TFHE](https://tfhe.github.io/tfhe/) library based on [CGGI19](https://eprint.iacr.org/2018/421), an improvement over GSW.
 
 # Question
