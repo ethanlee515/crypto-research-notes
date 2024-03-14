@@ -37,7 +37,7 @@
 
 ## Homomorphic Encryption: Theory
 
-* My understanding is theory-only. [eprint:2013/340](https://eprint.iacr.org/2013/340.pdf). Need to bridge the gap.
+* My understanding is a bit outdated from [GSW](https://eprint.iacr.org/2013/340.pdf).
 * All known constructions are lattice-based
 	* Yes, that makes it post quantum.
 	* Still surprised that we're interested though. This isn't their selling point.
