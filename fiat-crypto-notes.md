@@ -35,7 +35,7 @@
 	* [CryptOpt](https://arxiv.org/abs/2211.10665) (PLDI): Asm output from Fiat IR
 * Fiat IR limitations
 	* No loop. Can't do Dilithium for example. E-graphs can't deal with loops.
-	* Deterministic. Might be annoying dealing with Gaussian sampling (i.e. from Falcon or some FHE).
+	* Deterministic. Might be annoying dealing with Gaussian sampling (i.e. from [Falcon](https://falcon-sign.info/) or some FHE).
 
 ## Homomorphic Encryption: Theory
 
