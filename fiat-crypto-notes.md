@@ -30,7 +30,7 @@
 
 * Main contributions
 	* Optimized elliptic curve operations
-	* Handwritten Coq proof
+	* Correctness proof in Coq
 	* Before CryptOpt: Output C code, 2x slower than handwritten asm, need to trust gcc
 	* [CryptOpt](https://arxiv.org/abs/2211.10665) (PLDI): Asm output from Fiat IR
 * Fiat IR limitations
