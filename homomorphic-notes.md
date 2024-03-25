@@ -4,6 +4,9 @@
 
 \- [SoK: FHE compiler](https://arxiv.org/abs/2101.07078)
 
+There is no consensus on one bottleneck stopping the widespread adoption of FHE.
+Most players identify and solve challenges within their own community as below.
+
 ## Need for standardization?
 
 > But before Homomorphic Encryption can be adopted in medical, health, and financial sectors to protect data and patient and consumer privacy, it will have to be standardized, most likely by multiple standardization bodies and government agencies.
@@ -14,7 +17,7 @@
 	* BFV and BGV (theoretically [equivalent](https://arxiv.org/abs/2101.07078)) are leveled and batched
 	* CKKS is fast but inexact - good for ML
 	* TFHE introduces fast bootstrapping
-* Parameter selection is hard! More complicated functions => larger q => less secure => larger n. Input (plaintext) magnitude also matters.
+* Parameter selection is hard! More complicated functions => larger q => less secure => larger n. Input magnitude also matters.
 
 ## Lack of support for non-experts?
 
@@ -50,7 +53,7 @@
 
 \- [Zama](https://www.zama.ai/post/zama-fhe-master-plan)
 
-* [20,000x space overhead](https://www.jeremykun.com/2023/02/13/googles-fully-homomorphic-encryption-compiler-a-primer/) on encryption.
+Encryption incurs [20,000x space overhead](https://www.jeremykun.com/2023/02/13/googles-fully-homomorphic-encryption-compiler-a-primer/).
 
 ## Maybe we're on the right track?
 
@@ -80,6 +83,14 @@
 	* [Concrete ML](https://github.com/zama-ai/concrete-ml): Machine learning built on top of Concrete
 	* [fhEVM](https://github.com/zama-ai/fhevm): Privacy for Ethereum blockchain smart contracts
 
+## [Duality](https://dualitytech.com/)
+
+* [Raised 16M](https://techcrunch.com/2019/10/30/duality-cybersecurity-16-million/)
+* Co-founded by Vinod Vaikuntanathan
+* Holds leadership positions in the [OpenFHE project](https://www.openfhe.org/)
+* Collaborated with Dana Farber Cancer Institute
+* TODO Selling point: financial, healthcare, insurance?
+
 ## [Enveil](https://www.enveil.com/)
 
 * [Raised 10 millions USD in 2020](https://www.globenewswire.com/news-release/2020/02/18/1986152/0/en/Enveil-Raises-10-Million-in-Series-A-Funding.html)
@@ -90,14 +101,6 @@
 * Funded [10 millions USD](https://www.prnewswire.com/news-releases/jp-morgan-leads-usd-10-million-financing-in-leading-data-security-and-machine-learning-provider-inpher-300743090.html)
 * Selling point: ML. Financial, healthcare, defense (IoT).
 * [Many conference publications](https://inpher.io/learn/research/)
-
-## [Duality](https://dualitytech.com/)
-
-* [Raised 16M](https://techcrunch.com/2019/10/30/duality-cybersecurity-16-million/)
-* Co-founded by Vinod Vaikuntanathan
-* Financial, healthcare, insurance
-* Collaborated with Dana Farber Cancer Institute
-* Holds leadership positions in OpenFHE
 
 ## [IXUP](https://ixup.com/)
 
@@ -115,7 +118,7 @@
 
 * FHE might be overkill for secure voting. [Helios](https://vote.heliosvoting.org/) has been used for ACM and IACR just fine.
 * It is possible to "transcipher" from AES to FHE. Not sure if that line of work led anywhere though.
-* What about differential privacy? Don't we need to consider that too in some applications?
+* What about differential privacy? Don't we need to consider that too for some applications?
 
 ## Potentially interesting papers
 
