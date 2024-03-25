@@ -55,11 +55,6 @@
 		* Forgot how f and b are defined. Some bitwise decomposition magic...
 		* Decryption changed accordingly. Things cancel out "nicely"...
 
-## Homomorphic Encryption: Implementations
-
-* Google's [C++ Transpiler](https://github.com/google/fully-homomorphic-encryption) and [HEIR](https://heir.dev/)
-* Use the [TFHE](https://tfhe.github.io/tfhe/) library based on [CGGI19](https://eprint.iacr.org/2018/421), an improvement over GSW.
-
 # Question
 
 What is [Knox](https://github.com/anishathalye/knox)? How does it compare with Kami?
