@@ -108,7 +108,6 @@ Start-up scene seems very active too.
 ### [Zama](https://www.zama.ai/)
 
 * [Raised $73 millions in a Series A](https://www.zama.ai/post/zama-fhe-master-plan)
-* Based in France
 * "making FHE generally accessible to non-cryptography developers for the first time"
 * Projects (all open source with permissive license)
 	* [Concrete](https://github.com/zama-ai/concrete): Compiler for Python.
@@ -126,7 +125,6 @@ Start-up scene seems very active too.
 ### [Enveil](https://www.enveil.com/)
 
 * [Raised 25 Millions in a Series B](https://www.enveil.com/enveil-secures-25-million-in-series-b-funding/)
-* Washington D.C.-based
 * [ZeroReveal](https://www.enveil.com/products/) search and ML. Unclear if anyone is buying it though.
 
 ### [Inpher](https://inpher.io/)
@@ -139,7 +137,7 @@ Start-up scene seems very active too.
 ### [IXUP](https://ixup.com/)
 
 * [Raised 5.75 millions](https://itmunch.com/data-encryption-provider-ixup-appoints-new-ceo-md-marcus-gracey/)
-* Based in Australia. Approved cloud services supplier to the Australian Federal Government.
+* Approved cloud services supplier to the Australian Federal Government.
 * [SaaS platform for data analysis](https://ixup.com/platform/)
 
 # Other observations
