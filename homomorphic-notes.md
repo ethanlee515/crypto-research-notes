@@ -99,7 +99,8 @@ Near-term applications may need to break abstractions.
 \- Gartner "Innovation Insight for Federated Machine Learning", [quoted by Enveil](https://www.enveil.com/enveil-secures-25-million-in-series-b-funding/)
 
 * [Password monitor](https://www.microsoft.com/en-us/research/blog/password-monitor-safeguarding-passwords-in-microsoft-edge/) deployed in Microsoft Edge
-* IBM FHE [cloud service](https://he4cloud.com/public/about)
+* IBM FHE [cloud computing service](https://he4cloud.com/public/about) for ML
+* AWS "privacy-preserving ML" [talk](https://www.youtube.com/watch?v=ZQkB9XRqdnc)
 * IBM's [collaboration](https://ibm-research.medium.com/top-brazilian-bank-pilots-privacy-encryption-quantum-computers-cant-break-92ed2695bf14) with [Banco Bradesco](https://en.wikipedia.org/wiki/Banco_Bradesco)
 
 Start-up scene seems very active too.
@@ -109,7 +110,7 @@ Start-up scene seems very active too.
 * [Raised $73 millions in a Series A](https://www.zama.ai/post/zama-fhe-master-plan)
 * Based in France
 * "making FHE generally accessible to non-cryptography developers for the first time"
-* Projects
+* Projects (all open source with permissive license)
 	* [Concrete](https://github.com/zama-ai/concrete): Compiler for Python.
 	* [Concrete ML](https://github.com/zama-ai/concrete-ml): Machine learning built on top of Concrete
 	* [fhEVM](https://github.com/zama-ai/fhevm): Privacy for Ethereum blockchain smart contracts
@@ -163,4 +164,3 @@ Start-up scene seems very active too.
 * [More current FHE uses](https://www.future-fis.com/uploads/3/7/9/4/3794525/ffis_innovation_and_discussion_paper_-_case_studies_of_the_use_of_privacy_preserving_analysis_-_v.1.3.pdf)
 * What is Data61?
 * How much has come out of iDASH?
-* AWS "privacy-preserving ML" [talk](https://www.youtube.com/watch?v=ZQkB9XRqdnc)
