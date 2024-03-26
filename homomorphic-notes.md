@@ -60,7 +60,7 @@ FHEs require expertises that are out of reach from average programmers, and ther
 
 \- [Zama](https://www.zama.ai/post/zama-fhe-master-plan)
 
-* [Darpa program](https://www.darpa.mil/news-events/2021-03-08) for FHE hardware accelerator
+* [DARPA program](https://www.darpa.mil/news-events/2021-03-08) for FHE hardware accelerator
 * Encryption incurs [20,000x space overhead](https://www.jeremykun.com/2023/02/13/googles-fully-homomorphic-encryption-compiler-a-primer/) however.
 
 ### Algorithms need to be co-designed?
