@@ -69,7 +69,7 @@ FHEs require expertises that are out of reach from average programmers, and ther
 
 \- MIT Schwarzman College of Computing [talk](https://www.youtube.com/watch?v=96PKpE1VWUs)
 
-> batching (...) can lead to runtime improvements of many orders of magnitude. However, it (...) \[requires\] a deep understanding of both the application and the performance-tradeoffs of the FHE scheme in question.
+> batching (...) can lead to runtime improvements of many orders of magnitude. However, it (...) \[requires\] a deep understanding of both the application and the performance-tradeoffs of the FHE scheme
 > (...) this remains an open problem for more general applications.
 
 \- FHE compiler [SoK paper](https://arxiv.org/pdf/2101.07078.pdf)
