@@ -121,7 +121,7 @@ Start-up scene seems very active too.
 * Co-founded by Vinod Vaikuntanathan (2022 Gödel prize winner for efficient FHE scheme)
 * Holds leadership positions in the [OpenFHE project](https://www.openfhe.org/)
 * [Partnered with Scotiabank](https://www.prnewswire.com/news-releases/duality-technologies-launches-secureplus-query-the-first-privacy-enhanced-query-engine-for-data-collaboration-301022308.html), the third largest bank in Canada, for anti-money laundering detection
-* Cancer research [PNAS paper](https://www.pnas.org/doi/10.1073/pnas.2304415120) resulting from collaborations with teaching hospitals.
+* Cancer research [PNAS paper](https://www.pnas.org/doi/10.1073/pnas.2304415120) resulting from collaborations involving a teaching hospital.
 
 ### [Enveil](https://www.enveil.com/)
 
