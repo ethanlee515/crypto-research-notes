@@ -25,7 +25,7 @@ This is surprisingly challenging, even comparing to NIST PQC standardization.
 	* Input magnitude also matters.
 * None of the NIST PQC round 3 candidates are homomorphic.
 
-## Are FHEs not user-friendly?
+## Not user-friendly enough?
 
 > the widespread adoption of FHE still requires available tools that allow software developers without cryptography expertise to incorporate FHE into their applications
 
