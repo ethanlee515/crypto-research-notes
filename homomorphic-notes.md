@@ -43,8 +43,8 @@ This is surprisingly challenging, even comparing to NIST PQC standardization.
 
 FHEs require expertises that are out of reach from average programmers, and there are perhaps not enough experts.
 * Even simple additions can be nontrivial. (See Sklansky or Kogge-Stone adders.)
-* [Tricky](https://github.com/microsoft/SEAL/blob/main/SECURITY.md) to use *correctly*
-	* Security guarantees are quite [unintuitive](https://eprint.iacr.org/2020/1533).
+* [Tricky](https://github.com/microsoft/SEAL/blob/main/SECURITY.md) to use *securely*
+	* Security guarantees are [quite unintuitive](https://eprint.iacr.org/2020/1533).
 	* Relevant recent [bad news](https://eprint.iacr.org/2024/127): some leading FHE libraries broken.
 * Current efforts
 	* Google [C++ transpiler](https://github.com/google/fully-homomorphic-encryption) and [HEIR](https://heir.dev/)
@@ -65,7 +65,7 @@ FHEs require expertises that are out of reach from average programmers, and ther
 
 ### Algorithms need to be co-designed?
 
-> designing a new kind of search algorithm that is friendly for use with homomorphic encryption schemes
+> (...) designing a new kind of search algorithm that is friendly for use with homomorphic encryption schemes (...)
 
 \- MIT Schwarzman College of Computing [talk](https://www.youtube.com/watch?v=96PKpE1VWUs)
 
@@ -75,7 +75,7 @@ FHEs require expertises that are out of reach from average programmers, and ther
 \- FHE compiler [SoK paper](https://arxiv.org/pdf/2101.07078.pdf)
 
 A story that we're maybe all too familiar with.
-Near-term applications may have to break abstractions.
+Near-term applications may need to break abstractions.
 
 ## Lack of business incentives?
 
@@ -106,7 +106,7 @@ Start-up scene seems very active too.
 
 ### [Zama](https://www.zama.ai/)
 
-* [Raised 73 millions in a Series A](https://www.zama.ai/post/zama-fhe-master-plan)
+* [Raised $73 millions in a Series A](https://www.zama.ai/post/zama-fhe-master-plan)
 * Based in France
 * "making FHE generally accessible to non-cryptography developers for the first time"
 * Projects
@@ -116,7 +116,7 @@ Start-up scene seems very active too.
 
 ### [Duality](https://dualitytech.com/)
 
-* [Raised 16M in 2019](https://techcrunch.com/2019/10/30/duality-cybersecurity-16-million/)
+* [Raised 16M in a Series A](https://techcrunch.com/2019/10/30/duality-cybersecurity-16-million/)
 * Co-founded by Vinod Vaikuntanathan (2022 Gödel prize winner for efficient FHE scheme)
 * Holds leadership positions in the [OpenFHE project](https://www.openfhe.org/)
 * [Partnered with Scotiabank](https://www.prnewswire.com/news-releases/duality-technologies-launches-secureplus-query-the-first-privacy-enhanced-query-engine-for-data-collaboration-301022308.html), the third largest bank in Canada, for anti-money laundering detection
@@ -124,7 +124,7 @@ Start-up scene seems very active too.
 
 ### [Enveil](https://www.enveil.com/)
 
-* [Series B Funding 25 Millions](https://www.enveil.com/enveil-secures-25-million-in-series-b-funding/)
+* [Raised 25 Millions in a Series B](https://www.enveil.com/enveil-secures-25-million-in-series-b-funding/)
 * Washington D.C.-based
 * [ZeroReveal](https://www.enveil.com/products/) search and ML. Unclear if anyone is buying it though.
 
@@ -138,15 +138,15 @@ Start-up scene seems very active too.
 ### [IXUP](https://ixup.com/)
 
 * [Raised 5.75 millions](https://itmunch.com/data-encryption-provider-ixup-appoints-new-ceo-md-marcus-gracey/)
-* Based in Australia
-* TODO products?
+* Based in Australia. Approved cloud services supplier to the Australian Federal Government.
+* [SaaS platform for data analysis](https://ixup.com/platform/)
 
 ### [Cosmian](https://cosmian.com/)
 
-* [Raised 1.4 millions EUR](https://www.eu-startups.com/2019/03/paris-based-cosmian-raises-e1-4-for-its-platform-that-analyses-encrypted-data-while-keeping-it-private/)
+* [Raised 1.4 millions EUR](https://www.eu-startups.com/2019/03/paris-based-cosmian-raises-e1-4-for-its-platform-that-analyses-encrypted-data-while-keeping-it-private/) in 2019 while working on FHE applications
 * Based in Paris
-* Sells a lot of non-FHE stuff
-* Some FHE [papers](https://cosmian.com/technology/)...
+* Sells a lot of non-FHE stuff. No clue what happened to the FHE product development.
+* Some FHE [papers](https://cosmian.com/technology/)...?
 
 # Other observations
 
@@ -159,9 +159,7 @@ Start-up scene seems very active too.
 # TODOs
 
 * What's the impact of [CryptoNets](https://github.com/microsoft/CryptoNets)?
-* Learn more from each start-up. For example, what kind of ML? Biometric authentication? Finance?
 * [FHE survey 2017](https://arxiv.org/abs/1704.03578)
-* [EU HEAT](https://cordis.europa.eu/project/id/644209)
 * [More current FHE uses](https://www.future-fis.com/uploads/3/7/9/4/3794525/ffis_innovation_and_discussion_paper_-_case_studies_of_the_use_of_privacy_preserving_analysis_-_v.1.3.pdf)
 * What is Data61?
 * How much has come out of iDASH?
