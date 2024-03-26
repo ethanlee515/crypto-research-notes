@@ -134,20 +134,13 @@ Start-up scene seems very active too.
 * Funded [10 millions USD](https://www.prnewswire.com/news-releases/jp-morgan-leads-usd-10-million-financing-in-leading-data-security-and-machine-learning-provider-inpher-300743090.html)
 * Contributions to the open source [TFHE library](https://tfhe.github.io/tfhe/)
 * [Many conference publications](https://inpher.io/learn/research/), some on FHE
-* Sells non-FHE SaaS products
+* [Cloud computing platform](https://inpher.io/xor-secret-computing/)
 
 ### [IXUP](https://ixup.com/)
 
 * [Raised 5.75 millions](https://itmunch.com/data-encryption-provider-ixup-appoints-new-ceo-md-marcus-gracey/)
 * Based in Australia. Approved cloud services supplier to the Australian Federal Government.
 * [SaaS platform for data analysis](https://ixup.com/platform/)
-
-### [Cosmian](https://cosmian.com/)
-
-* [Raised 1.4 millions EUR](https://www.eu-startups.com/2019/03/paris-based-cosmian-raises-e1-4-for-its-platform-that-analyses-encrypted-data-while-keeping-it-private/) in 2019 while working on FHE applications
-* Based in Paris
-* Sells a lot of non-FHE stuff. No clue what happened to the FHE product development.
-* Some FHE [papers](https://cosmian.com/technology/)...?
 
 # Other observations
 
