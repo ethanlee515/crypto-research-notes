@@ -23,7 +23,7 @@ This seems surprisingly challenging, even comparing to NIST PQC standardization.
 	* BFV and BGV (can be [unified](https://eprint.iacr.org/2021/204)) are leveled and batched
 	* CKKS is fast but inexact - good for ML
 	* TFHE introduces fast bootstrapping at the cost of batching.
-	* What about chimeric FHEs?
+	* Ciphertext maintenance is a headache. Chimeric FHEs could complicate the situation even more.
 * Parameter selection is hard!
 	* More complicated functions => larger q => less secure => need larger n.
 	* Input magnitude also matters.
