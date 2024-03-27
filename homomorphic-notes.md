@@ -1,4 +1,4 @@
-# Why aren't we using FHE?
+# Full Homomorphic Encryptions: Recent Challenges
 
 > While it is clear that both significant advances have been made and many challenges remain open, there is no systematic understanding of the remaining engineering challenges that need to be addressed to help broaden FHE adoption.
 
@@ -14,10 +14,11 @@ Most players identify and work on challenges within their own community as below
 \- [Homomorphic Encryption Standard](https://homomorphicencryption.org/wp-content/uploads/2018/11/HomomorphicEncryptionStandardv1.1.pdf)
 
 This is surprisingly challenging, even comparing to NIST PQC standardization.
+* A [consortium](https://homomorphicencryption.org/participants/) produced a [draft](https://homomorphicencryption.org/standard/) in 2019.
 * FHE interface is more complicated! Different FHEs are good at different things.
 	* BFV and BGV (can be [unified](https://eprint.iacr.org/2021/204)) are leveled and batched
 	* CKKS is fast but inexact - good for ML
-	* TFHE introduces fast bootstrapping at the cost of batching
+	* TFHE introduces fast bootstrapping at the cost of batching.
 	* What about chimeric FHEs?
 * Parameter selection is hard!
 	* It's not like Dilithium that just has 3 sets of agreed parameters.
@@ -45,7 +46,7 @@ FHEs require expertises that are out of reach from average programmers, and ther
 * Even simple additions can be nontrivial. (See Sklansky or Kogge-Stone adders.)
 * [Tricky](https://github.com/microsoft/SEAL/blob/main/SECURITY.md) to use *securely*
 	* Security guarantees are [quite unintuitive](https://eprint.iacr.org/2020/1533).
-	* Relevant recent [bad news](https://eprint.iacr.org/2024/127): some leading FHE libraries broken.
+	* Relevant recent [bad news](https://eprint.iacr.org/2024/127): some leading FHE libraries broken. (Interesting story here btw.)
 * Current efforts
 	* Google [C++ transpiler](https://github.com/google/fully-homomorphic-encryption) and [HEIR](https://heir.dev/)
 	* Microsoft [SEAL](https://github.com/microsoft/SEAL) and [EVA](https://github.com/microsoft/EVA)
@@ -59,6 +60,10 @@ FHEs require expertises that are out of reach from average programmers, and ther
 > In the past two years alone, \[homomorphic evaluations\] progressed from being 1,000,000 times slower to being 10,000 to 1,000 times slower, and we are on track to be less than 10 times slower by 2025. This marks the moment where FHE can become ubiquitous, to employ everywhere we desire privacy.
 
 \- [Zama](https://www.zama.ai/post/zama-fhe-master-plan)
+
+> FHE is not (yet!) fast enough to be used in all applications (...)
+
+\- AWS re:Invent 2020 [talk](https://www.youtube.com/watch?v=ZQkB9XRqdnc)
 
 * [DARPA program](https://www.darpa.mil/news-events/2021-03-08) for FHE hardware accelerator
 * Encryption incurs [20,000x space overhead](https://www.jeremykun.com/2023/02/13/googles-fully-homomorphic-encryption-compiler-a-primer/) however.
@@ -96,7 +101,11 @@ Near-term applications may need to break abstractions.
 
 > by 2025, 60% of large organizations will use privacy-enhancing computation techniques to protect privacy in untrusted environments or for analytics purposes
 
-\- Gartner "Innovation Insight for Federated Machine Learning", [quoted by Enveil](https://www.enveil.com/enveil-secures-25-million-in-series-b-funding/)
+\- Gartner ["Innovation Insight for Federated Machine Learning"](https://www.gartner.com/en/documents/4014059), paywalled but [quoted by Enveil](https://www.enveil.com/enveil-secures-25-million-in-series-b-funding/)
+
+> the existence of homomorphic encryption schemes has potentially very profound implications for the cloud computing business
+
+\- AWS re:Invent 2020 [talk](https://www.youtube.com/watch?v=ZQkB9XRqdnc) by Amazon Scholar [Joan Feigenbaum](https://www.amazon.science/author/joan-feigenbaum) 
 
 * [Password monitor](https://www.microsoft.com/en-us/research/blog/password-monitor-safeguarding-passwords-in-microsoft-edge/) deployed in Microsoft Edge
 * IBM FHE [cloud computing service](https://he4cloud.com/public/about) for ML
@@ -109,7 +118,7 @@ Start-up scene seems very active too.
 
 * [Raised $73 millions in a Series A](https://www.zama.ai/post/zama-fhe-master-plan)
 * "making FHE generally accessible to non-cryptography developers for the first time"
-* Projects (all open source with permissive license)
+* Projects (all open source with dual licensing)
 	* [Concrete](https://github.com/zama-ai/concrete): Compiler for Python.
 	* [Concrete ML](https://github.com/zama-ai/concrete-ml): Machine learning built on top of Concrete
 	* [fhEVM](https://github.com/zama-ai/fhevm): Privacy for Ethereum blockchain smart contracts
@@ -125,33 +134,28 @@ Start-up scene seems very active too.
 ### [Enveil](https://www.enveil.com/)
 
 * [Raised 25 Millions in a Series B](https://www.enveil.com/enveil-secures-25-million-in-series-b-funding/)
-* [ZeroReveal](https://www.enveil.com/products/) search and ML. Unclear if anyone is buying it though.
+* [ZeroReveal](https://www.enveil.com/products/) search and ML
+* [Anti money laundering](https://www.enveil.com/enveil-teams-recognized-at-techsprint/) proof of concept
 
 ### [Inpher](https://inpher.io/)
 
 * Funded [10 millions USD](https://www.prnewswire.com/news-releases/jp-morgan-leads-usd-10-million-financing-in-leading-data-security-and-machine-learning-provider-inpher-300743090.html)
 * Contributions to the open source [TFHE library](https://tfhe.github.io/tfhe/)
 * [Many conference publications](https://inpher.io/learn/research/), some on FHE
-* [Cloud computing platform](https://inpher.io/xor-secret-computing/)
+* [Secure cloud computing platform](https://inpher.io/xor-secret-computing/)
 
 ### [IXUP](https://ixup.com/)
 
 * [Raised 5.75 millions](https://itmunch.com/data-encryption-provider-ixup-appoints-new-ceo-md-marcus-gracey/)
 * Approved cloud services supplier to the Australian Federal Government.
-* [SaaS platform for data analysis](https://ixup.com/platform/)
+* [SaaS platform for secure data analysis](https://ixup.com/platform/)
 
 # Other observations
 
-* Some problems cannot be solved using FHE alone
+* Some proposed applications cannot (or should not) be solved using FHE alone
 	* For example, E-voting requires verifiability
 	* FHE might even be overkill sometimes. See [Helios](https://vote.heliosvoting.org/) voting and MIT [private web search](https://www.youtube.com/watch?v=ZQkB9XRqdnc).
-* It is possible to "transcipher" from AES to FHE. Not sure if that line of work led anywhere though.
+	* There are many overlapped use cases between FHE and [secure multi-party computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation). Might be worth comparing the two.
+* It is possible to "transcipher" from AES to FHE. Not sure if that line of work leads anywhere though.
 * What about differential privacy? Don't we need to consider that too for some applications?
-
-# TODOs
-
-* What's the impact of [CryptoNets](https://github.com/microsoft/CryptoNets)?
-* [FHE survey 2017](https://arxiv.org/abs/1704.03578)
-* [More current FHE uses](https://www.future-fis.com/uploads/3/7/9/4/3794525/ffis_innovation_and_discussion_paper_-_case_studies_of_the_use_of_privacy_preserving_analysis_-_v.1.3.pdf)
-* What is Data61?
-* How much has come out of iDASH?
+* [Microsoft Azure](https://learn.microsoft.com/en-us/azure/confidential-computing/overview) and [Google Cloud](https://cloud.google.com/security/products/confidential-computing?hl=en) both offer "confidential computing", but they're only [TEE](https://en.wikipedia.org/wiki/Trusted_execution_environment)-based.
