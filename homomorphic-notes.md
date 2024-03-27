@@ -109,7 +109,6 @@ Near-term applications may need to break abstractions.
 
 * [Password monitor](https://www.microsoft.com/en-us/research/blog/password-monitor-safeguarding-passwords-in-microsoft-edge/) deployed in Microsoft Edge
 * IBM FHE [cloud computing service](https://he4cloud.com/public/about) for ML
-* AWS "privacy-preserving ML" [talk](https://www.youtube.com/watch?v=ZQkB9XRqdnc)
 * IBM's [collaboration](https://ibm-research.medium.com/top-brazilian-bank-pilots-privacy-encryption-quantum-computers-cant-break-92ed2695bf14) with [Banco Bradesco](https://en.wikipedia.org/wiki/Banco_Bradesco)
 
 Start-up scene seems very active too.
