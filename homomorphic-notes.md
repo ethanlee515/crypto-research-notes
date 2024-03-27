@@ -13,17 +13,21 @@ Most players identify and work on challenges within their own community as below
 
 \- [Homomorphic Encryption Standard](https://homomorphicencryption.org/wp-content/uploads/2018/11/HomomorphicEncryptionStandardv1.1.pdf)
 
+> we cannot standardize a single set of secure parameter choices (...) parameter selection remains an issue in developing FHE-based applications.
+
+\- [SoK: FHE compiler](https://arxiv.org/abs/2101.07078)
+
 This seems surprisingly challenging, even comparing to NIST PQC standardization.
-* A [consortium](https://homomorphicencryption.org/participants/) produced a [draft](https://homomorphicencryption.org/standard/) in 2019.
+* A [consortium](https://homomorphicencryption.org/participants/) produced a [draft](https://homomorphicencryption.org/standard/) in 2019. 
 * FHE interface is more complicated! Different FHEs are good at different things.
 	* BFV and BGV (can be [unified](https://eprint.iacr.org/2021/204)) are leveled and batched
 	* CKKS is fast but inexact - good for ML
 	* TFHE introduces fast bootstrapping at the cost of batching.
 	* What about chimeric FHEs?
 * Parameter selection is hard!
-	* It's not like Dilithium that just has 3 sets of agreed parameters.
 	* More complicated functions => larger q => less secure => need larger n.
 	* Input magnitude also matters.
+	* Bad parameter choices can cause subtle vulnerabilities - more on this later.
 * None of the NIST PQC round 3 candidates are homomorphic.
 
 ## Not user-friendly enough?
