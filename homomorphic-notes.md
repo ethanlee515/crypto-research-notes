@@ -13,7 +13,7 @@ Most players identify and work on challenges within their own community as below
 
 \- [Homomorphic Encryption Standard](https://homomorphicencryption.org/wp-content/uploads/2018/11/HomomorphicEncryptionStandardv1.1.pdf)
 
-This is surprisingly challenging, even comparing to NIST PQC standardization.
+This seems surprisingly challenging, even comparing to NIST PQC standardization.
 * A [consortium](https://homomorphicencryption.org/participants/) produced a [draft](https://homomorphicencryption.org/standard/) in 2019.
 * FHE interface is more complicated! Different FHEs are good at different things.
 	* BFV and BGV (can be [unified](https://eprint.iacr.org/2021/204)) are leveled and batched
