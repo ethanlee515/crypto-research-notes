@@ -66,7 +66,7 @@ FHEs require expertises that are out of reach from average programmers, and ther
 \- AWS re:Invent 2020 [talk](https://www.youtube.com/watch?v=ZQkB9XRqdnc)
 
 * [DARPA program](https://www.darpa.mil/news-events/2021-03-08) for FHE hardware accelerator
-* Encryption incurs [20,000x space overhead](https://www.jeremykun.com/2023/02/13/googles-fully-homomorphic-encryption-compiler-a-primer/) however.
+* Encryption incurs [20,000x space overhead](https://www.jeremykun.com/2023/02/13/googles-fully-homomorphic-encryption-compiler-a-primer/) as of early 2023 however.
 
 ### Algorithms need to be co-designed?
 
