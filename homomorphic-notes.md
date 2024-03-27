@@ -101,7 +101,7 @@ Near-term applications may need to break abstractions.
 
 > by 2025, 60% of large organizations will use privacy-enhancing computation techniques to protect privacy in untrusted environments or for analytics purposes
 
-\- Gartner ["Innovation Insight for Federated Machine Learning"](https://www.gartner.com/en/documents/4014059), paywalled but [quoted by Enveil](https://www.enveil.com/enveil-secures-25-million-in-series-b-funding/)
+\- [Gartner](https://en.wikipedia.org/wiki/Gartner) ["Innovation Insight for Federated Machine Learning"](https://www.gartner.com/en/documents/4014059), paywalled but [quoted by Enveil](https://www.enveil.com/enveil-secures-25-million-in-series-b-funding/)
 
 > the existence of homomorphic encryption schemes has potentially very profound implications for the cloud computing business
 
