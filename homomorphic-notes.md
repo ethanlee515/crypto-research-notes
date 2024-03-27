@@ -27,7 +27,7 @@ This seems surprisingly challenging, even comparing to NIST PQC standardization.
 * Parameter selection is hard!
 	* More complicated functions => larger q => less secure => need larger n.
 	* Input magnitude also matters.
-	* Bad parameter choices can cause subtle vulnerabilities - more on this later.
+	* Bad parameter choices can lead to subtle vulnerabilities - more on this later.
 * None of the NIST PQC round 3 candidates are homomorphic.
 
 ## Not user-friendly enough?
