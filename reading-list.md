@@ -24,7 +24,7 @@ For lattice background, I learned it some years ago from Regev's [survey paper](
 
 Popular open-source FHE implementations today include [OpenFHE](https://github.com/openfheorg/openfhe-development), [TFHE](https://tfhe.github.io/tfhe/), [TFHE-rs](https://github.com/zama-ai/tfhe-rs), and [SEAL](https://github.com/microsoft/SEAL).
 
-As homomorphic encryptions are not user-friendly, there are many efforts to produce compilers.
+As homomorphic encryptions are not user-friendly, there are efforts to produce compilers.
 * [SoK: FHE compilers](https://arxiv.org/abs/2101.07078) is a good place to start.
 * From there, I recommend Google's FHE compiler [paper](https://arxiv.org/abs/2106.07893) and their [talk](https://www.youtube.com/watch?v=kqDFdKUTNA4) on their ongoing follow-up [HEIR](https://heir.dev/) project.
 * There are also other compilers including Microsoft's [EVA](https://github.com/microsoft/EVA) and the start-up Zama's [Concrete](https://github.com/zama-ai/concrete).
