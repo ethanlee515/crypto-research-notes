@@ -9,7 +9,7 @@ For FHE constructions, there are four generations of FHEs. All except first gene
 1. The "first generation" (2009-) is very inefficient. Homomorphic evaluation overhead scales at n^4 with really bad constants. Some early works also base their security on non-standard assumptions. The theory was immature and we're better off reading later papers.
 2. The "second generation" (2011-) consists of the "BGV" and "BFV" constructions.
 	* The "BGV" construction won the Godel prize. The theory is given by the FOCS 2011 paper [BV](https://eprint.iacr.org/2011/344) and its follow-up work [BGV](https://eprint.iacr.org/2011/277).
-	* The "BFV" construction consists of the Brakerski [paper](https://eprint.iacr.org/2012/078) and the [FV](https://eprint.iacr.org/2012/144) paper.
+	* The "BFV" construction consists of the [Brakerski paper](https://eprint.iacr.org/2012/078) and the [FV paper](https://eprint.iacr.org/2012/144).
 	* It was [shown recently](https://eprint.iacr.org/2022/1363) that BGV and BFV can be unified under one framework, and we can convert between their ciphertexts.
 3. From the "third generation" (2013-), the [TFHE paper](https://eprint.iacr.org/2018/421) is itself a unification of two earlier papers and should describe the theory in full. Alternatively, [GSW](https://eprint.iacr.org/2013/340) is a beginner-friendly introduction and a personal favorite of mine ever since my theory days in Taiwan.
 4. The "fourth generation" (2017-) [CKKS](https://eprint.iacr.org/2016/421) forgoes perfect correctness for efficiency. It is popular for potential machine learning applications.
