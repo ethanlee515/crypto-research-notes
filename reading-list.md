@@ -7,7 +7,7 @@ Gentry gave an [invited talk](https://www.youtube.com/watch?v=487AjvFW1lk) at Eu
 Most of the papers below have recorded conference talks, except the very recent ones still under submission.
 Just search up the title on YouTube and you should easily find the available ones.
 
-For FHE constructions, there are four generations of FHEs. All except first generations are in use today, as each is suited for different applications.
+For FHE constructions, there are four generations of FHEs. All except first generations are actively researched today, as each is suited for different applications.
 1. The "first generation" (2009-) is very inefficient. Homomorphic evaluation overhead scales at n^4 with really bad constants. Some early works also base their security on non-standard assumptions.
 2. The "second generation" (2011-) consists of the "BGV" and "BFV" constructions.
 	* The "BGV" construction won the Godel prize. The theory is given by the FOCS 2011 [BV paper](https://eprint.iacr.org/2011/344) and its follow-up work [BGV](https://eprint.iacr.org/2011/277).
