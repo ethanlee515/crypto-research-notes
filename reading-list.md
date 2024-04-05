@@ -5,6 +5,8 @@ Disclaimer: I haven't read all of these yet. I might discover gaps as I work thr
 Most of these papers have recorded conference talks, except the very recent ones still under submission.
 Just search up the title on YouTube and you should easily find the available ones.
 
+Gentry gave a FHE [invited talk](https://www.youtube.com/watch?v=487AjvFW1lk) at Eurocrypt 2021.
+
 For FHE constructions, there are four generations of FHEs. All except first generations are in use today, as each is suited for different applications.
 1. The "first generation" (2009-) is very inefficient. Homomorphic evaluation overhead scales at n^4 with really bad constants. Some early works also base their security on non-standard assumptions. The theory was immature and we're better off reading later papers.
 2. The "second generation" (2011-) consists of the "BGV" and "BFV" constructions.
