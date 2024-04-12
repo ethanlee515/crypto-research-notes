@@ -16,7 +16,9 @@ For FHE constructions, there are four generations of FHEs. All except first gene
 3. From the "third generation" (2013-), the [TFHE paper](https://eprint.iacr.org/2018/421) is itself a unification of two other third-generation papers and should describe the theory in full. If it is too dense, perhaps start with [GSW](https://eprint.iacr.org/2013/340) which is a beginner-friendly introduction and a personal favorite of mine ever since my theory days in Taiwan. One of the TFHE coauthors gave a 2-hour [talk](https://www.youtube.com/watch?v=npoHSR6-oRw).
 4. The "fourth generation" (2017-) [CKKS](https://eprint.iacr.org/2016/421) forgoes perfect correctness for efficiency. It is popular for potential machine learning applications. It was initially proposed as a "leveled" scheme, and "bootstrapping" was [later added](https://eprint.iacr.org/2018/153).
 
-FHEs suffer from weaker security guarantees that are explored [here](https://eprint.iacr.org/2020/1533) in the context of fourth generation schemes. Related issues in other generations are subsequently identified and exploited recently in this [paper](https://eprint.iacr.org/2024/127).
+FHEs suffer from weaker security guarantees that are explored [here](https://eprint.iacr.org/2020/1533) in the context of fourth generation schemes.
+Relevant [talk](https://www.youtube.com/watch?v=b24WJyS0dmg) by one of the coauthors.
+Related issues in other generations are subsequently identified and exploited recently in this [paper](https://eprint.iacr.org/2024/127). 
 
 For lattice background, I learned it some years ago from Regev's [survey paper](https://ieeexplore.ieee.org/document/5497885) and I would certainly recommend it if needed.
 
