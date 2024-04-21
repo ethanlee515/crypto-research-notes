@@ -18,6 +18,10 @@ FHEs suffer from weaker security guarantees that are explored [here](https://epr
 
 For lattice background, I learned it some years ago from Regev's [survey paper](https://ieeexplore.ieee.org/document/5497885) and I would certainly recommend it if needed.
 
+On selecting concrete parameters, [LWE estimator](https://www.degruyter.com/document/doi/10.1515/jmc-2015-0016/html) seems to be a popular tool.
+* Old repository [link](https://bitbucket.org/malb/lwe-estimator/src/master/)
+* New repository [link](https://github.com/malb/lattice-estimator/)
+
 # Engineering
 
 Popular open-source FHE implementations today include [OpenFHE](https://github.com/openfheorg/openfhe-development), [TFHE](https://tfhe.github.io/tfhe/), [TFHE-rs](https://github.com/zama-ai/tfhe-rs), and [SEAL](https://github.com/microsoft/SEAL).
