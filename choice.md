@@ -4,12 +4,16 @@ So, which scheme to formally verify first?
 
 ## Gen 1
 
-This is a long time ago and nobody uses it anymore.
+> Current solutions are so much better!
+
+\- Gentry, Eurocrypt 2021 invited talk
+
+Gen 1 was a long time ago and nobody uses it anymore.
 There's no point.
 
 ## Gen 2
 
-This generation started in 2011 as the first usable scheme.
+This generation started in 2011 as the first practical construction.
 
 ### Pros
 
@@ -18,16 +22,17 @@ This generation started in 2011 as the first usable scheme.
 
 ### Cons
 
-It is only used for shallow circuits in practice.
-The issue is that the encryption picks up "noise" as the computation progresses, and resetting the noise by "bootstrapping" is too costly.
+This generation is only used for shallow circuits in practice.
+The issue is that the encryption picks up "noise" as the computation progresses, until decryption eventually becomes impossible.
+It is possible in principle to reset the noise using "bootstrapping", but that is too costly in practice for gen 2 schemes.
 This is a dilemma because we'd either:
-1. Verify the bootstrapping feature that nobody currently uses, and is in fact a shifting goalpost, or
-2. Verify only the shallow circuit version, in that case it is not even *fully* homomorphic anymore.
+1. Verify the bootstrapping feature that nobody currently uses, and is in fact a shifting goalpost thanks to the active theoretical research, or
+2. Verify only what is used in practice, though that gives up on the *full* homomorphism.
 
 ## Gen 3
 
-A new blueprint for FHEs was proposed in 2013 and has undergone constant iterations since.
-These FHEs feature faster bootstrapping, but operated only on booleans and recently on small integers too.
+A new blueprint for FHEs was proposed in 2013 and has undergone many iterations since.
+These FHEs feature faster bootstrapping, but operate only on booleans and small integers.
 TFHE is the most representative project in generation 3.
 
 ### Pros
@@ -39,7 +44,7 @@ TFHE is the most representative project in generation 3.
 ### Cons
 
 A fraction of our efforts might *not* be spent towards security proofs. Our strategy would be as follows:
-1. Verify "IND-CPA" security: Without homomorphic evaluation, the data is encrypted as expected.
+1. Verify "IND-CPA" security: Without homomorphic evaluation, the data is securely encrypted.
 2. Generalize to "IND-CPA+" security: It is ok to use and share decryption results of homomorphic evaluations.
 
 The first step is relatively straightforward, as the initial encryption is relatively simple.
@@ -52,7 +57,7 @@ On a sidenote, the analysis mentions some heuristics that might become annoying 
 ## Gen 4
 
 The CKKS encryption was proposed in 2017 as the first *approximate homomorphic encryption* scheme:
-when `f(x)` is evaluated homomorphically, the result is `f(x) + epsilon` for some small noise `epsilon`.
+when `f(x)` is evaluated homomorphically, the result is `f(x) + e` for some small noise `e`.
 
 ### Pros
 
@@ -61,7 +66,7 @@ when `f(x)` is evaluated homomorphically, the result is `f(x) + epsilon` for som
 * The tumultuous history makes a fascinating story.
 	* 2017: Proposed for shallow circuits
 	* 2018: Added support for arbitrarily deep circuits
-	* 2020: Totally broken. The error `epsilon` contains secret information. Major libraries quickly patched out known attacks or advised against sharing outputs.
+	* 2020: Totally broken. The noise `e` contains secret information. Major libraries quickly patched out known attacks or advised against sharing outputs.
 	* 2022: Provably secure patch finally proposed
 	* Today: The patch still seems missing in some major libraries
 * Interesting proof: the new proof borrows tools from differential privacy
