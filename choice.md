@@ -24,7 +24,7 @@ This generation started in 2011 as the first practical construction.
 
 This generation is only used for shallow circuits in practice.
 The issue is that the encryption picks up "noise" as the computation progresses, until decryption eventually becomes impossible.
-It is possible in principle to reset the noise using "bootstrapping", but that is too costly in practice for gen 2 schemes.
+It is possible in theory to reset the noise using "bootstrapping", but the cost is prohibitive in practice for gen 2 schemes.
 This is a dilemma because we'd either:
 1. Verify the bootstrapping feature that nobody currently uses, and is in fact a shifting goalpost thanks to the active theoretical research, or
 2. Verify only what is used in practice, though that gives up on the *full* homomorphism.
