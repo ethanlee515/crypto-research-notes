@@ -35,22 +35,22 @@ int P // parameter, positive integer
 
 def keygen() -> public_key * evaluation_key * secret_key:
 	// generate public and secret keys
-	a <- random poly
-	s <- random "small" poly
-	e <- random poly with Gaussian coeffs.
+	a <$- random poly
+	s <$- random "small" poly
+	e <$- random poly with Gaussian coeffs.
 	pk = (- a * s + e, a)
 	// generate evaluation keys
-	a' <- random poly mod Pq
-	e' <- random poly with Gaussian coeffs.
-	evk = [(a' s + e', a') + (P * s^2, 0)] mod Pq
+	a' <$- random poly mod Pq
+	e' <$- random poly with Gaussian coeffs.
+	evk = [(a' * s + e', a') + (P * s^2, 0)] mod Pq
 	return (pk, evk, s)
 
 def encrypt(a: public_key, m: poly):
-	nu <- random "small" poly
-	e0, e1 <- random poly with Gaussian coeffs.
+	nu <$- random "small" poly
+	e0, e1 <$- random poly with Gaussian coeffs.
 	return pk * nu + (e0, e1) + (m, 0)
 
-def decrypt(sk: poly, (beta, alpha): poly^2):
+def decrypt(sk: poly, (beta, alpha): ciphertext):
 	return beta + alpha * sk
 ```
 
@@ -66,12 +66,9 @@ Now we define such an encryption oracle in our "Game 0" = IND-CPA game.
 ```
 INDCPA_Oracle: EncryptionOracle
 	public_key pk
-	secret_key sk
 	bool b
 
-	def initialize(pk_in, b_in):
-		pk := pk_in
-		b := b_in
+	def initialize(pk, b): pk(pk), b(b) {}
 
 	def encrypt(m_0, m_1):
 		if b:
@@ -83,17 +80,17 @@ INDCPA_Oracle: EncryptionOracle
 We next define an interface that the adversary must follow.
 ```
 interface INDCPA_Adversary(O: EncryptionOracle):
-	def distinguish(pk: public_key, evk: evaluation_key) : bool
+	def main(pk: public_key, evk: evaluation_key) : bool
 ```
 
 We are now finally ready to define the IND-CPA game.
-Notice that this captures an intuition idea of what an encryption should accomplish.
+Notice that this captures an intuition of what an encryption should accomplish.
 ```
-def main():
-	b <$ {0, 1}
+def INDCPA::main():
+	b <$- {0, 1}
 	(pk, evk, sk) <- keygen()
 	Oracle.initialize(pk, b)
-	b' <- Adversary.distinguish(pk, evk)
+	b' <- Adversary.main(pk, evk)
 	return (b == b')
 ```
 
@@ -113,16 +110,16 @@ Now we define the RLWE Game with the number of samples `qs` as a parameter.
 ```
 RLWE(Distinguisher : RLWE_Distinguisher) :
 	def RWLE::main(q):
-		b <$ {0, 1}
+		b <$- {0, 1}
 		samples = list()
-		s <- random small poly
+		s <$- random small poly
 		for i in range(qs):
-			alpha <- uniformly random poly
+			alpha <$- uniformly random poly
 			if b:
-				e <- Gaussian error
+				e <$- Gaussian error
 				beta = alpha * s + e
 			else:
-				beta <- uniformly random poly
+				beta <$- uniformly random poly
 			samples.append(beta, alpha)
 		b' <- Distinguisher.main(samples)
 		return (b == b')
@@ -132,10 +129,10 @@ We now write RLWE instead as the difference between a pair of games.
 ```
 def RLWE0::main():
 	samples = list()
-	s <- random small poly
+	s <$- random small poly
 	for i in range(qs):
-		alpha <- uniformly random poly
-		e <- Gaussian error
+		alpha <$- uniformly random poly
+		e <$- Gaussian error
 		beta = alpha * s + e
 		samples.append(beta, alpha)
 	b <- Distinguisher.main(samples)
@@ -143,24 +140,26 @@ def RLWE0::main():
 
 def RLWE1::main():
 	samples = list()
-	s <- random small poly
+	s <$- random small poly
 	for i in range(qs):
-		alpha <- uniformly random poly
-		beta <- uniformly random poly
+		alpha <$- uniformly random poly
+		beta <$- uniformly random poly
 		samples.append(beta, alpha)
 	b <- Distinguisher.main(samples)
 	return b
 ```
 There exists a standard simple reduction from this version to the version above.
 That is, for all adversary `A` there exists a reduction `R(A)` so that
-`|RLWE0(A)::main() - RLWE1(A)::main()| / 2 = RLWE(R(A))::main() - 1/2`.
+`|Pr[RLWE0(A)] - Pr[RLWE1(A)]| / 2 = Pr[RLWE(R(A))] - 1/2`.
+(By abuse of notation, we write `Pr[G]` for the probability that the adversary wins the game `Pr[true <- G::main()]`,
+where the probability is taken over all randomness generated during the runtime.)
 
-We additionally need a "correlated" version for RLWE, where one runs `qc` instances of RLWE run in parallel,
+We additionally need a "correlated" version for RLWE, where one runs `qc` instances of RLWE in parallel,
 each with their own secret `s_i`.
-Moreover, the samples are correlated in that the `j`-th sample have the same `alpha_j` across all instances.
-Roughly speaking, this is to address that the encryptions of different messages share the same public key.
-I can throw together a proof that things are still hard to break, up to losing a factor of `qc`.
-There could be a better proof out there with a tighter bound.
+Moreover, the samples are correlated in that the `j`-th sample across all instances have the same `alpha_j`.
+Roughly speaking, this is to address that encryptions of different messages share the same public key.
+I can throw together a proof that it is still hard to break, up to losing a factor of `qc`.
+There might be a better proof out there with a tighter bound.
 
 ```
 // a collection of samples (betas, alpha), one beta from each RLWE instance
@@ -172,10 +171,10 @@ interface MultiRLWE_Distinguisher():
 MultiRLWE0(Distinguisher : MultiRLWE_Distinguisher):
 	samples = list<multi_sample>()
 	for i in range(qs):
-		alpha <- uniformly random poly
+		alpha <$- uniformly random poly
 		for i in range(qc):
-			si <- "small" poly
-			ei <- Gaussian error
+			si <$- "small" poly
+			ei <$- Gaussian error
 			betas.append(a * si + ei)
 		samples.append(betas, alpha)
 	b <- Adversary.distinguish(samples)
@@ -184,9 +183,9 @@ MultiRLWE0(Distinguisher : MultiRLWE_Distinguisher):
 MultiRLWE1(Distinguisher : MultiRLWE_Distinguisher):
 	samples = list<multi_sample>()
 	for i in range(qs):
-		alpha <- uniformly random poly
+		alpha <$- uniformly random poly
 		for i in range(qc):
-			beta_i <- uniformly random poly
+			beta_i <$- uniformly random poly
 			betas.append(beta_i)
 		samples.append(betas, alpha)
 	b <- Adversary.distinguish(alpha, betas)
@@ -195,8 +194,8 @@ MultiRLWE1(Distinguisher : MultiRLWE_Distinguisher):
 
 We can bound the "distance" between `MultiRLWE0` and `MultiRLWE1` by a standard "hybrid argument".
 More concretely, we define `qc - 1` intermediate games.
-In the `i`-th intermediate game, the first `i - 1` samples are real RLWE samples and the rest are uniformly random.
-We can then write down a reduction from distinguishing the `i`-th game to the next one to distinguishing `RLWE0` and `RLWE1` by lining up the interfaces accordingly and generating all samples except for the `i+1`-th one during the reduction.
+In the `i`-th intermediate game, the first `i` samples are real RLWE samples and the rest are uniformly random.
+We can then write down a reduction from distinguishing the `i`-th game to the next one to distinguishing `RLWE0` and `RLWE1` by lining up the interfaces accordingly and generating all samples except for the `i + 1`-th one during the reduction.
 We save the details for later since it just involves too much boilerplate.
 For now we note that formalizing hybrid arguments indexed by parameters [is not new in EasyCrypt](https://github.com/formosa-crypto/dilithium/blob/main/proofs/security/ReprogHybrid.eca).
 
@@ -207,16 +206,16 @@ In the first game hop, we replace the evaluation key with a uniformly random pol
 def G1::main():
 	b <$ {0, 1}
 	(pk, _, sk) <- keygen()
-	evk <- random poly
+	evk <$- random poly
 	Oracle.initialize(pk, b)
 	b' <- Adversary.distinguish(pk, evk)
 	return (b == b')
 ```
 
-We next need to prove our `G1` gamme is indistinguishable from the INDCPA game.
-We do so by a standard reduction to the RLWE problem.
+We next need to prove our `G1` game is indistinguishable from the INDCPA game.
+We do so by reduction to the RLWE problem.
 More concretely, given any INDCPA adversary `A`,
-we construct a RLWE distinguisher `G1_Reduce(A)` such that if `A` can distinguish between G1 and INDCPA then `G1_Reduce(A)` can distinguish between `RLWE0` and `RLWE1`.
+we construct a RLWE distinguisher `G1_Reduce(A)` such that if `A` can distinguish between `INDCPA` and `G1` then `G1_Reduce(A)` can distinguish between `RLWE0` and `RLWE1`.
 ```
 G1_Reduce_Oracle = INDCPA_Oracle
 
@@ -224,25 +223,26 @@ G1_Reduce(A) : RLWE_Distinguisher
 	def main(samples):
 		(pk, _, sk) <- keygen()
 		evk = samples[0]
-		Oracle.initialize(pk, b)
-		b' <- Adversary.distinguish(pk, evk)
+		G1_Reduce_Oracle.initialize(pk, b)
+		b' <- Adversary(G1_Reduce_Oracle).distinguish(pk, evk)
 		return (b == b')
 ```
-By construction then we have for all adversaries `A` against INDCPA,
-`INDCPA(A)` and `RLWE0(R1_Reduce(A))` are identical experiments, and same for `G1(A)` and `RLWE1(R1_Reduce(A))`.
-We therefore have `|INDCPA(A)::main() - G1(A)::main()| / 2 <= RLWE(R'(A)) - 1 / 2` for some reduction `R'`.
+By construction `INDCPA(A)` and `RLWE0(R1_Reduce(A))` are identical experiments, and same for `G1(A)` and `RLWE1(R1_Reduce(A))`.
+We therefore have `|Pr[INDCPA(A)] - Pr[G1(A)]| / 2 <= Pr[RLWE(R'(A))] - 1 / 2` for some reduction `R'`.
 
 ### Second game hop
 
 In the second game hop, we replace the public key with uniformly random polynomials.
 The same encryption oracle stays unchanged except initialized with this uniformly random public key.
 ```
+G2_Oracle = INDCPA_Oracle
+
 def G2::main():
-	b <$ {0, 1}
-	pk <$ (uniformly random poly)^2
-	evk <- (random poly)^2
-	Oracle.initialize(pk, b)
-	b' <- Adversary.distinguish(pk, evk)
+	b <$- {0, 1}
+	pk <$- (uniformly random poly)^2
+	evk <$- (random poly)^2
+	G2_Oracle.initialize(pk, b)
+	b' <- Adversary(G2_Oracle).distinguish(pk, evk)
 	return (b == b')
 ```
 
@@ -274,15 +274,13 @@ By the RLWE assumption then, the games `INDCPA(A)` and `G1(A)` must be close.
 Now we define `G3` where the encryption algorithm is changed.
 Instead of padding the messages with an RLWE instance, truly random polynomials are used.
 ```
-G3_Encryption_Oracle : EncryptionOracle
+G3_Oracle : EncryptionOracle
 	bool b
-
-	def initialize(b_in):
-		b = b_in
+	def initialize(b): b(b) {}
 
 	def encrypt(m_0, m_1):
-		beta <- random poly
-		alpha <- random poly
+		beta <$- random poly
+		alpha <$- random poly
 		if b:
 			return (beta, alpha) + (m_0, 0)
 		else
@@ -296,21 +294,20 @@ G3_Reduction_Oracle : EncryptionOracle
 	bool b
 	list<poly> pads0
 	list<poly> pads1
-
 	def initialize(b, pads0, pads1): b(b), pads0(pads0), pads1(pads1) {}
 
 	def encrypt(m_0, m_1):
 		pad0 = pads0[0]
-		pads0 = pads0[1:]
 		pad1 = pads1[0]
+		pads0 = pads0[1:]
 		pads1 = pads1[1:]
 		if b:
 			return (pad0, pad1) + (m_0, 0)
 		else
 			return (pad0, pad1) + (m_1, 0)
 ```
-One can see that if this oracle is initialized with RLWE samples, then the result is equivalent with the encryption oracle used in `G1`.
-On the other hand, if it is initialized with uniformly random strings, the result is equivalent to `G2_Encryption_Oracle` above.
+One can see that if this oracle is initialized with RLWE samples, then the result is equivalent with `G2_Oracle`.
+On the other hand, if initialized with uniformly random strings, the result is equivalent to `G3_Oracle`.
 We can then finish the reduction accordingly.
 ```
 G3_Reduce(A: INDCPA_Adversary) : MultiRLWE_Distinguisher
@@ -319,14 +316,14 @@ G3_Reduce(A: INDCPA_Adversary) : MultiRLWE_Distinguisher
 		pk = (sample[0].alpha, sample[1].alpha)
 		G3_Reduction_Oracle.initialize(b, samples[0].betas, samples[1].betas)
 		evk = (random poly)^2
-		b' <- A(G2_Reduction_Oracle).main(pk, evk)
+		b' <- A(G3_Reduction_Oracle).main(pk, evk)
 		return (b = b')
 ```
 Following the same story as before,
 we have `G2(A) = MultiRLWE0(G3_Reduce(A))` and `G3(A) = MultiRLWE1(G3_Reduce(A))`.
 We can therefore argue their indistinguishability using the RLWE assumption.
 
-### Showing IND-CPA security
+### Finishing IND-CPA security
 
 We finally notice that the adversary has exactly 1/2 probability of winning `G3`.
 This is because it receives no information on `b` throughout the execution.
@@ -341,3 +338,27 @@ G4_Encryption_Oracle : EncryptionOracle
 ```
 The experiment then becomes completely independent from `b`, which means a adversary guesses it correctly with probability exactly one half.
 (Or it diverges and runs forever.)
+
+## IND-CPA+ Security
+
+We next show that homomorphic operations have no negative impact on the security.
+The intuition here is that correct evaluation results do not leak any secrets.
+CKKS comes with small errors however, so one needs to upper-bound its error and add a noise-flooding step at the end of decryption.
+
+### Homomorphic evaluation algorithms
+
+We begin by writing down the homomorphic operations supported by CKKS.
+```
+def add(c1, c2) = c1 + c2
+
+def mult(evk, c1, c2) = TODO
+
+def rescale(c) = TODO
+```
+
+TODO say something about randomized rounding?
+
+### The IND-CPA+ Game
+
+We next state the IND-CPA+ game. TODO
+
