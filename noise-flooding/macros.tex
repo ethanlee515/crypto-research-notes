@@ -1,1 +1,26 @@
-\usepackage{amsthm}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{xcolor}
+\usepackage{cleveref}
+\usepackage{physics}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\parens}[1]{\left(#1\right)}
+\newcommand{\sqparens}[1]{\left[#1\right]}
+\newcommand{\DG}[2]{\mathcal{N}_{\mathbb{Z}}\parens{#1, #2}}
+\newcommand{\KL}[2]{\cD\parens{#1 || #2}}
+\newcommand{\renyi}[2]{\cD_\alpha\parens{#1 || #2}}
+
+\newcommand{\Ethan}[1]{{\color{blue}[Yi: #1]}}

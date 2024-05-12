@@ -1,6 +1,5 @@
 main.pdf: main.tex macros.tex
-	latexmk -pdf
+	latexmk -pdf main
 
 clean:
 	git clean -d -x -f
-	rm *.pdf
