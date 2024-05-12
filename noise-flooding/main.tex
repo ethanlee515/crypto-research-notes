@@ -49,7 +49,7 @@ We now state precisely the theorem we want to prove.
 To show this, we use a relation between KL divergence and R\'enyi divergence.
 We first define the R\'enyi divergence.
 \begin{definition}[R\'enyi divergence]
-	Let $\cP$ and $\cQ$ be distributions over integers, and let $\alpha>1$.
+	Let $\cP$ and $\cQ$ be distributions over integers, and let $\alpha\ne 1$.
 	We define
 	\begin{equation}
 		\renyi{\cP}{\cQ} = \frac{1}{\alpha - 1}
@@ -73,7 +73,7 @@ we assume the distributions are discrete Gaussians to avoid some complications.
 Thus it suffices to show that
 \begin{lemma}
 	\label{lemma:DG-renyi-bound}
-	Let $\cP$ and $\cQ$ be distributions over integers, let $\sigma\in\bbR$, and let $\alpha>1$. We have
+	Let $\cP$ and $\cQ$ be distributions over integers, let $\sigma\in\bbR$, and let $\alpha\ne 1$. We have
 	\begin{equation}
 		\renyi{\DG{\mu}{\sigma^2}}{\DG{\nu}{\sigma^2}} \leq \frac{\parens{\nu - \mu}^2}{2\sigma^2} \cdot \alpha
 	\end{equation}
@@ -142,7 +142,8 @@ We additionally need a theorem on sufficient conditions for deriving infinite su
 
 \section{Proofs of the lemmas}
 
-We present the proofs in reverse order, except we omit the proof for \Cref{theorem:exchange-sum-and-integral} since it's obviously true for Riemann integrals.
+We present the proofs in roughly reverse order, so that no proof uses a yet-unproven fact.
+We omit the proof for \Cref{theorem:exchange-sum-and-integral} since it's clearly true for Riemann integrals.
 First, \Cref{theorem:Fourier-unique} and \Cref{theorem:Fourier-converge} are standard material found in textbooks such as \cite{fourier-textbook}.
 We include their proofs here for completeness.
 
@@ -259,7 +260,7 @@ We next take the proofs of \Cref{lemma:DG-renyi-bound} and \Cref{lemma:norm-shif
 	where the final inequality is due to \Cref{lemma:norm-shifted-DG}.
 \end{proof}
 
-Before finishing the proof, we need the fact on derivatives of infinite sum.
+Before finishing the proof, we need a fact on derivatives of infinite sum.
 \begin{proof}[Proof of \Cref{theorem:derive-infinite-sum}]
 	$\int f_k'\rightarrow \int g$ due to uniform convergence assumption.
 	We also have $\int f_k'=f_k\rightarrow f$.
@@ -267,53 +268,45 @@ Before finishing the proof, we need the fact on derivatives of infinite sum.
 	Taking derivatives on both sides finishes the proof.
 \end{proof}
 
-We finally prove \Cref{lemma:KL-renyi} and observe that \Cref{theorem:noise-flooding} follows direction from \Cref{lemma:KL-renyi} and \Cref{lemma:DG-renyi-bound}.
+We finally prove \Cref{lemma:KL-renyi} and observe that \Cref{theorem:noise-flooding} follows directly from \Cref{lemma:KL-renyi} and \Cref{lemma:DG-renyi-bound}.
 
 \begin{proof}[Proof of \Cref{lemma:KL-renyi}]
-	The result follows from L'H\^opital's rule and direct computation afterwards.
+	Notice that
+	\begin{equation}
+		\lim_{\alpha\rightarrow 1}\frac{f(\alpha)}{\alpha-1}=f'(1)
+	\end{equation}
+	if the derivative exists.
+	We therefore try to take the derivative
 	\begin{align*}
-		\lim_{\alpha\rightarrow1}\renyi{\cP}{\cQ}
-		&=\lim_{\alpha\rightarrow1}\frac{1}{\alpha-1}
-		\ln\parens{\sum_{x\in\bbZ}
+		\frac{d}{d\alpha}
+		&\ln\parens{\sum_{x\in\bbZ}
 		\parens{\Pr\sqparens{\cP=x}}^\alpha
-		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}}\\
-		&=\lim_{\alpha\rightarrow1}\frac{\partial}{\partial\alpha}
-		\ln\parens{\sum_{x\in\bbZ}
-		\parens{\Pr\sqparens{\cP=x}}^\alpha
-		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}}\\
-		&=\lim_{\alpha\rightarrow1}
+		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}} \\
+		&\qquad=
 		\frac{
-			\frac{\partial}{\partial\alpha}
+			\frac{d}{d\alpha}
+			\sum_{x\in\bbZ}
+			\parens{\Pr\sqparens{\cP=x}}^\alpha
+			\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}
+		}{
 			\sum_{x\in\bbZ}
 			\parens{\Pr\sqparens{\cP=x}}^\alpha
 			\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}
 		}
-		{
-			\sum_{x\in\bbZ}
-			\parens{\Pr\sqparens{\cP=x}}^\alpha
-			\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}
-		}\\
-		&=\lim_{\alpha\rightarrow1}
-		\frac{\partial}{\partial\alpha}
-		\sum_{x\in\bbZ}
-		\parens{\Pr\sqparens{\cP=x}}^\alpha
-		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}\\
-		&=\lim_{\alpha\rightarrow1}
-		\sum_{x\in\bbZ}
-		\frac{\partial}{\partial\alpha}
-		\parens{\Pr\sqparens{\cP=x}}^\alpha
-		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}\\
-		&=\lim_{\alpha\rightarrow1}
-		\sum_{x\in\bbZ}
-		\parens{\Pr\sqparens{\cP=x}}^\alpha
-		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}
-		\ln\parens{\frac{\Pr\sqparens{\cP=x}}{\Pr\sqparens{\cQ=x}}}\\
-		&=\sum_{x\in\bbZ}\Pr\sqparens{\cP=x}
-		\ln\parens{\frac{\Pr\sqparens{\cP=x}}{\Pr\sqparens{\cQ=x}}}\\
-		&=\KL{\cP}{\cQ}
 	\end{align*}
-	Notice that we can exchange the derivative and the infinite sum due to \Cref{theorem:derive-infinite-sum},
-	for which all the assumptions are satisfied by substituting in discrete Gaussian density functions.
+	We next exchange the derivative and the infinite sum using \Cref{theorem:derive-infinite-sum},
+	for which all the assumptions are satisfied by discrete Gaussian density functions.
+	(Here we can use monotone convergence instead, but I don't know if that's any simpler to prove.)
+	We then take the derivative
+	\begin{align*}
+		\frac{d}{d\alpha}&
+		\parens{\Pr\sqparens{\cP=x}}^\alpha
+		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha} \\
+		&\qquad=\parens{\Pr\sqparens{\cP=x}}^\alpha
+		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}
+		\ln\parens{\frac{\Pr\sqparens{\cP=x}}{\Pr\sqparens{\cQ=x}}}
+	\end{align*}
+	We arrive at the conclusion by collecting everything so far and substituting $\alpha=1$.
 \end{proof}
 
 \subsection{A Tail Bound for Discrete Gaussian}
