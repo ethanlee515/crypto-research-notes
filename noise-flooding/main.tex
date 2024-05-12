@@ -165,7 +165,42 @@ We include their proofs here for completeness.
 \end{proof}
 
 \begin{proof}[Proof of \Cref{theorem:Fourier-converge}]
-TODO
+	We have that
+	\begin{equation}
+		\sum_{k=-n}^n \hat{f}(k) e^{2\pi i k x}
+	\end{equation}
+	converges absolutely and uniformly.
+	We now define
+	\begin{equation}
+		g(x)=\lim_{n\rightarrow\infty}\sum_{k=-n}^n \hat{f}(k) e^{2\pi i k x}.
+	\end{equation}
+	Observe that $g(x)$ is continuous, as it is the limit of a sequence of continuous functions that converges uniformly.
+	The uniform convergence also allows us to use \Cref{theorem:exchange-sum-and-integral} to show that $\hat{g}(k)=\hat{f}(k)$.
+	Applying \Cref{theorem:Fourier-unique} to $f-g$ then gives $f=g$.
+\end{proof}
+
+We next prove the Poisson summation formula.
+
+\begin{proof}[Proof of \Cref{lemma:Poisson-summation}]
+	Define
+	\begin{equation}
+		F(x)=\sum_{n\in\bbZ}f(x+n)
+	\end{equation}
+	which is well-defined as $f$ is Schwarz.
+	Observe that $F$ is periodic and we can write down its Fourier coefficients:
+	\begin{align}
+		\hat{F}(k)&=\int_0^1 \sum_{n\in\bbZ} f(x+n)e^{-2\pi ikx} \\
+		&=\sum_{n\in\bbZ} \int_0^1 f(x+n)e^{-2\pi ikx} \\
+		&=\sum_{n\in\bbZ} \int_n^{n+1} f(x)e^{-2\pi ikx} \\
+		&=\int_{-\infty}^{\infty} f(x)e^{-2\pi ikx} \\
+		&=\hat{f}(k)
+	\end{align}
+	where the switch between sum and integral is again due to \Cref{theorem:exchange-sum-and-integral}.
+	By applying \Cref{theorem:Fourier-converge} then, we have
+	\begin{equation}
+		F(x)=\sum_k \hat{f}(k) e^{ikx}.
+	\end{equation}
+	The conclusion follows by substituting $x=0$.
 \end{proof}
 
 \subsection{A Tail Bound for Discrete Gaussian}
