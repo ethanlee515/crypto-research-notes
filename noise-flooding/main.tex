@@ -203,6 +203,31 @@ We next prove the Poisson summation formula.
 	The conclusion follows by substituting $x=0$.
 \end{proof}
 
+We next take the proofs of \Cref{lemma:DG-renyi-bound} and \Cref{lemma:norm-shifted-DG} from \cite{discrete-gaussian}.
+
+\begin{proof}[Proof of \Cref{lemma:norm-shifted-DG}]
+	Let $f(x)=e^{-x^2/2\sigma^2}$ and we have its Fourier coefficient
+	\begin{equation}
+		\hat{f}(y)=\sqrt{2\pi\sigma^2}e^{-2\pi^2\sigma^2y^2}.
+	\end{equation}
+	By applying \Cref{lemma:Poisson-summation} to $g(x, t)=e^{-(x+t)^2/2\sigma^2}$,
+	we have
+	\begin{equation}
+		\sum_{x\in\bbZ}f(x+t)=\sum_{y\in\bbZ}\hat{f}(y)e^{2\pi iyt}.
+	\end{equation}
+	We then have
+	\begin{align}
+		\sum_{x\in\bbZ}e^{-(x-\mu)/2\sigma^2}
+		&=\sum_{x\in\bbZ}f(x-\mu)\\
+		&=\abs{\sum_{x\in\bbZ}f(x-\mu)} \\
+		&=\abs{\sum_{y\in\bbZ}\hat{f}(y)e^{-2\pi iy\mu}} \\
+		&\leq\sum_{y\in\bbZ}\abs{\hat{f}(y)e^{-2\pi iy\mu}} \\
+		&=\sum_{y\in\bbZ}\hat{f}(y) \\
+		&=\sum_{x\in\bbZ}f(x) \\
+		&=\sum_{x\in\bbZ}e^{-x/2\sigma^2}
+	\end{align}
+\end{proof}
+
 \subsection{A Tail Bound for Discrete Gaussian}
 
 Using the machinery developed so far,
