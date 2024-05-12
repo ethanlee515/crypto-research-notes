@@ -1,4 +1,4 @@
-main.pdf: main.tex macros.tex
+main.pdf: main.tex macros.tex references.bib
 	latexmk -pdf main
 
 clean:
