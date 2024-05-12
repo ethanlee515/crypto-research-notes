@@ -12,19 +12,18 @@
 \section{Overview}
 
 We want to bound the distance between two discrete Gaussians in terms of their means and variances.
-We first give a top-down overview of the analysis before diving into details.
-Specifically, we state all the lemma used in the analysis and defer their proofs for later.
+We first sketch the analysis by stating all the lemma involved, and defer their proofs for later.
 We begin by defining the building blocks for our main theorem.
 
 \begin{definition}[Discrete Gaussian]
 	For any $\mu\in\bbZ$ and $\sigma\in\bbR$, denote $\DG{\mu}{\sigma^2}$ as the discrete Gaussian distribution centered at $\mu$ with variance $\sigma^2$.
-	To write down the pdf, for all $x\in\bbZ$ we have
-	\begin{equation}
-		\Pr\sqparens{\DG{\mu}{\sigma^2}=x}=\frac{1}{C}e^{-\parens{x-\mu}^2/2\sigma^2}
-	\end{equation}
-	for normalization constant
+	More concretely, for all $x\in\bbZ$ we can compute the norm of the Gaussian function
 	\begin{equation}
 		C=\sum_{x\in\bbZ} e^{-\parens{x-\mu}^2/2\sigma^2}
+	\end{equation}
+	and define the density function accordingly as
+	\begin{equation}
+		\Pr\sqparens{\DG{\mu}{\sigma^2}=x}=\frac{1}{C}e^{-\parens{x-\mu}^2/2\sigma^2}
 	\end{equation}
 \end{definition}
 
@@ -40,6 +39,7 @@ We begin by defining the building blocks for our main theorem.
 We now state precisely the theorem we want to prove.
 
 \begin{theorem}
+	\label{theorem:noise-flooding}
 	For all $\mu, \nu\in\bbZ$ and $\sigma\in\bbR$, we have
 	\begin{equation}
 		\KL{\DG{\mu}{\sigma^2}}{\DG{\nu}{\sigma^2}} = \frac{\parens{\nu - \mu}^2}{2\sigma^2}
@@ -49,7 +49,7 @@ We now state precisely the theorem we want to prove.
 To show this, we use a relation between KL divergence and R\'enyi divergence.
 We first define the R\'enyi divergence.
 \begin{definition}[R\'enyi divergence]
-	Let $\cP$ and $\cQ$ be distributions over integers, and let $\alpha\in\bbR$.
+	Let $\cP$ and $\cQ$ be distributions over integers, and let $\alpha>1$.
 	We define
 	\begin{equation}
 		\renyi{\cP}{\cQ} = \frac{1}{\alpha - 1}
@@ -59,9 +59,12 @@ We first define the R\'enyi divergence.
 	\end{equation}
 \end{definition}
 
-We can then write KL divergence in terms of R\'enyi divergence:
+We can then write KL divergence in terms of R\'enyi divergence.
+Though this is generally true even for continuous distributions,
+we assume the distributions are discrete Gaussians to avoid some complications.
 \begin{lemma}
-	For all $\cP$ and $\cQ$ distributions over integers,
+	\label{lemma:KL-renyi}
+	For discrete Gaussians distributions $\cP$ and $\cQ$,
 	\begin{equation}
 		\KL{\cP}{\cQ} = \lim_{\alpha\rightarrow 1}\renyi{\cP}{\cQ}
 	\end{equation}
@@ -70,7 +73,7 @@ We can then write KL divergence in terms of R\'enyi divergence:
 Thus it suffices to show that
 \begin{lemma}
 	\label{lemma:DG-renyi-bound}
-	Let $\cP$ and $\cQ$ be distributions over integers, and let $\alpha, \sigma\in\bbR$. We have
+	Let $\cP$ and $\cQ$ be distributions over integers, let $\sigma\in\bbR$, and let $\alpha>1$. We have
 	\begin{equation}
 		\renyi{\DG{\mu}{\sigma^2}}{\DG{\nu}{\sigma^2}} \leq \frac{\parens{\nu - \mu}^2}{2\sigma^2} \cdot \alpha
 	\end{equation}
@@ -127,6 +130,14 @@ Finally, the convergence theorem above uses the fact that Fourier series is uniq
 \begin{theorem}
 	\label{theorem:Fourier-unique}
 	Suppose $f$ is continuous and periodic on $[0, 1)$, and satisfies $\int f<\infty$ and also $\hat{f}(k)=0$ for all $k\in\bbZ$, then $f=0$.
+\end{theorem}
+
+We additionally need a theorem on sufficient conditions for deriving infinite sums.
+\begin{theorem}
+	\label{theorem:derive-infinite-sum}
+	Let $f_k:\bbR\rightarrow\bbR$ where $f_k\rightarrow f$ pointwise and $f'_k\rightarrow g$ uniformly for some $f, g: \bbR\rightarrow\bbR$.
+	Assume further that everything is $C^1$.
+	We have $f'=g$.
 \end{theorem}
 
 \section{Proofs of the lemmas}
@@ -226,6 +237,83 @@ We next take the proofs of \Cref{lemma:DG-renyi-bound} and \Cref{lemma:norm-shif
 		&=\sum_{x\in\bbZ}f(x) \\
 		&=\sum_{x\in\bbZ}e^{-x/2\sigma^2}
 	\end{align}
+\end{proof}
+
+\begin{proof}[Proof of \Cref{lemma:DG-renyi-bound}]
+	We take $\nu=0$ without loss of generality.
+	We have
+	\begin{align}
+		&e^{(\alpha-1)\renyi{\DG{\mu}{\sigma^2}}{\DG{0}{\sigma^2}}}\\
+		&\qquad=\sum_{x\in\bbZ}\parens{\Pr\sqparens{\DG{\mu}{\sigma^2}=x}}^\alpha\parens{\Pr\sqparens{\DG{0}{\sigma^2}=x}}^{1-\alpha}\\
+		&\qquad=\sum_{x\in\bbZ}
+			\parens{
+				\frac{e^{-(x-\mu)^2/2\sigma^2}}{\sum_y e^{-(y-\mu)^2/2\sigma^2}}
+			}^\alpha
+			\parens{
+				\frac{e^{-x^2/2\sigma^2}}{\sum_y e^{-y^2/2\sigma^2}}
+			}^{1-\alpha}\\
+		&\qquad=\frac{\sum_x e^{\parens{-x^2+2\alpha\mu x-\alpha\mu^2}/2\sigma^2}}{\sum_y e^{-y^2/2\sigma^2}}\\
+		&\qquad=e^{\alpha(\alpha-1)}\cdot\frac{\sum_x e^{-\parens{x-\alpha\mu}^2/2\sigma^2}}{\sum_y e^{-y^2/2\sigma^2}}\\
+		&\qquad\leq e^{\alpha(\alpha-1)}
+	\end{align}
+	where the final inequality is due to \Cref{lemma:norm-shifted-DG}.
+\end{proof}
+
+Before finishing the proof, we need the fact on derivatives of infinite sum.
+\begin{proof}[Proof of \Cref{theorem:derive-infinite-sum}]
+	$\int f_k'\rightarrow \int g$ due to uniform convergence assumption.
+	We also have $\int f_k'=f_k\rightarrow f$.
+	Due to uniqueness of limits and the $C^1$ condition we have $f=\int g$.
+	Taking derivatives on both sides finishes the proof.
+\end{proof}
+
+We finally prove \Cref{lemma:KL-renyi} and observe that \Cref{theorem:noise-flooding} follows direction from \Cref{lemma:KL-renyi} and \Cref{lemma:DG-renyi-bound}.
+
+\begin{proof}[Proof of \Cref{lemma:KL-renyi}]
+	The result follows from L'H\^opital's rule and direct computation afterwards.
+	\begin{align*}
+		\lim_{\alpha\rightarrow1}\renyi{\cP}{\cQ}
+		&=\lim_{\alpha\rightarrow1}\frac{1}{\alpha-1}
+		\ln\parens{\sum_{x\in\bbZ}
+		\parens{\Pr\sqparens{\cP=x}}^\alpha
+		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}}\\
+		&=\lim_{\alpha\rightarrow1}\frac{\partial}{\partial\alpha}
+		\ln\parens{\sum_{x\in\bbZ}
+		\parens{\Pr\sqparens{\cP=x}}^\alpha
+		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}}\\
+		&=\lim_{\alpha\rightarrow1}
+		\frac{
+			\frac{\partial}{\partial\alpha}
+			\sum_{x\in\bbZ}
+			\parens{\Pr\sqparens{\cP=x}}^\alpha
+			\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}
+		}
+		{
+			\sum_{x\in\bbZ}
+			\parens{\Pr\sqparens{\cP=x}}^\alpha
+			\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}
+		}\\
+		&=\lim_{\alpha\rightarrow1}
+		\frac{\partial}{\partial\alpha}
+		\sum_{x\in\bbZ}
+		\parens{\Pr\sqparens{\cP=x}}^\alpha
+		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}\\
+		&=\lim_{\alpha\rightarrow1}
+		\sum_{x\in\bbZ}
+		\frac{\partial}{\partial\alpha}
+		\parens{\Pr\sqparens{\cP=x}}^\alpha
+		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}\\
+		&=\lim_{\alpha\rightarrow1}
+		\sum_{x\in\bbZ}
+		\parens{\Pr\sqparens{\cP=x}}^\alpha
+		\parens{\Pr\sqparens{\cQ=x}}^{1-\alpha}
+		\ln\parens{\frac{\Pr\sqparens{\cP=x}}{\Pr\sqparens{\cQ=x}}}\\
+		&=\sum_{x\in\bbZ}\Pr\sqparens{\cP=x}
+		\ln\parens{\frac{\Pr\sqparens{\cP=x}}{\Pr\sqparens{\cQ=x}}}\\
+		&=\KL{\cP}{\cQ}
+	\end{align*}
+	Notice that we can exchange the derivative and the infinite sum due to \Cref{theorem:derive-infinite-sum},
+	for which all the assumptions are satisfied by substituting in discrete Gaussian density functions.
 \end{proof}
 
 \subsection{A Tail Bound for Discrete Gaussian}
