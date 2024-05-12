@@ -322,20 +322,45 @@ Using the machinery developed so far,
 we can also easily show a tail-bound for the discrete Gaussian.
 One simply shows that discrete Gaussian is a \emph{subgaussian} distribution,
 then use the tail bounds for subgaussian distributions.
-
+We begin by defining what are subgaussian distributions.
 \begin{definition}[subgaussian distributions]
-	TODO
+	A random variable $X$ over reals is \emph{subgaussian} if its moment generating function satisfies the \emph{Laplace transform condition}:
+	there exists $b>0$ so that for all $t\in\bbR$,
+	\begin{equation}
+		\E\sqparens{e^{tX}} \leq e^{b^2t^2/2}
+	\end{equation}
 \end{definition}
 
-We show that the discrete Gaussian satisfies the Laplace tail \Ethan{?} property...
+We show that the discrete Gaussian is indeed subgaussian.
 \begin{lemma}
-	TODO
+	The discrete Gaussian distribution $\DG{0}{\sigma^2}$ is subgaussian with $b^2=\sigma^2$.
 \end{lemma}
+\begin{proof}
+	By \Cref{lemma:norm-shifted-DG}, we have
+	\begin{align}
+		\E\sqparens{e^{tX}}
+		&=\frac{\sum_x e^{tx-x^2/2\sigma^2}}{\sum_y e^{-y^2/2\sigma^2}} \\
+		&=\frac{\sum_x e^{-\parens{x-t\sigma^2}^2/2\sigma^2}\cdot e^{t^2\sigma^2/2}}{\sum_y e^{-y^2/2\sigma^2}} \\
+		&\leq e^{t^2\sigma^2/2}
+	\end{align}
+\end{proof}
 
-Next we give a standard result that Laplace property implies the tail...
+Next we take the proof from \cite{subgaussian} that tails of subgaussian random variables decay at least as fast as Gaussians.
 \begin{lemma}
-	TODO
+	Suppose $X$ is subgaussian, then there exists $c>0$ so that for all $\lambda>0$,
+	\begin{equation}
+		\Pr\sqparens{\abs{X}\geq\lambda}\leq 2e^{-c\lambda^2}
+	\end{equation}
 \end{lemma}
+\begin{proof}
+	Using Markov's inequality, we have
+	\begin{align}
+		\Pr\sqparens{X\geq\lambda}&=\Pr\sqparens{tX\geq t\lambda} \\
+		&\leq \frac{\E\sqparens{e^{tX}}}{e^{tX}} \\
+		&\leq e^{-t\lambda + b^2 t^2 /2}
+	\end{align}
+	Choosing $t=\frac{\lambda}{2b^2}$ and doing the same calculation for the left tail concludes the proof.
+\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{references}
