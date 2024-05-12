@@ -11,10 +11,9 @@
 
 \section{Overview}
 
-We want to bound the distance between two discrete Gaussian in terms of their mean and variance.
-Here we give a top-down overview of the proof before diving into the details.
-Specifically, we state all the lemma in the analysis and defer their proofs for later.
-
+We want to bound the distance between two discrete Gaussians in terms of their means and variances.
+We first give a top-down overview of the analysis before diving into details.
+Specifically, we state all the lemma used in the analysis and defer their proofs for later.
 We begin by defining the building blocks for our main theorem.
 
 \begin{definition}[Discrete Gaussian]
@@ -38,7 +37,7 @@ We begin by defining the building blocks for our main theorem.
 	\end{equation}
 \end{definition}
 
-We now stating precisely the theorem we want to prove here.
+We now state precisely the theorem we want to prove.
 
 \begin{theorem}
 	For all $\mu, \nu\in\bbZ$ and $\sigma\in\bbR$, we have
@@ -104,7 +103,7 @@ Now we state the Poisson summation formula.
 	\end{equation}
 \end{lemma}
 
-As one may expect, the next steps use standard results in real analysis and Fourier analysis.
+As one may expect, \Cref{lemma:Poisson-summation} can be shown using standard results in real analysis and Fourier analysis.
 First we state a sufficient condition for exchanging sums and integrals.
 \begin{theorem}
 	\label{theorem:exchange-sum-and-integral}
@@ -127,18 +126,68 @@ here we use the following version.
 Finally, the convergence theorem above uses the fact that Fourier series is unique.
 \begin{theorem}
 	\label{theorem:Fourier-unique}
-	Suppose $f$ is continuous and periodic on $[0, 1)$ and satisfies $\hat{f}(k)=0$ for all $k\in\bbZ$, then $f=0$.
+	Suppose $f$ is continuous and periodic on $[0, 1)$, and satisfies $\int f<\infty$ and also $\hat{f}(k)=0$ for all $k\in\bbZ$, then $f=0$.
 \end{theorem}
 
 \section{Proofs of the lemmas}
 
-We present the proofs in reverse order.
-First, \Cref{theorem:Fourier-unique} and \Cref{theorem:Fourier-converge} is standard material found in \cite{fourier-textbook}.
-We include here for completeness.
+We present the proofs in reverse order, except we omit the proof for \Cref{theorem:exchange-sum-and-integral} since it's obviously true for Riemann integrals.
+First, \Cref{theorem:Fourier-unique} and \Cref{theorem:Fourier-converge} are standard material found in textbooks such as \cite{fourier-textbook}.
+We include their proofs here for completeness.
+
+\begin{proof}[Proof of \Cref{theorem:Fourier-unique}]
+	We assume without loss of generality that $f$ is defined on $[-\pi, \pi]$.
+	Suppose for the sake of contradiction that $f(0)>0$; this choice of nonzero point is also without loss of generality since Fourier series have properties for horizontal shifts.
+	Since $f$ is continuous then, there exists some neighborhood $\delta<\frac{\pi}{2}$ so that $f(x)>\frac{y}{2}$ for all $x\in(x_0 - \delta, x_0 + \delta)$.
+	We next define
+	\begin{equation}
+		p(\theta)=\varepsilon+\cos\theta
+	\end{equation}
+	where
+	$$\varepsilon=\frac{1}{4}\parens{1-\cos\delta}$$
+	is chosen so for all $\delta\leq\abs{\theta}\leq\pi$ we have $\abs{p\parens{\theta}}<1-\frac{\varepsilon}{2}$.
+	We next choose $0<\eta<\delta$ so that $p(\eta)\geq 1 +\frac{\varepsilon}{2}$ which we can do due to continuity of $p$.
+	Notice that
+	$$p_k\parens{\theta}=\sqparens{p\parens{\theta}}^k$$
+	is a trigonometric polynomial, so we have
+	\begin{equation*}
+		\int_{-\pi}^\pi f(\theta) p_k(\theta)d\theta = 0.
+	\end{equation*}
+	We however see that can't be true, since as $k\rightarrow\infty$ we have
+	\begin{equation*}
+		\int_{\abs{\theta}<\eta}f(\theta)p_k(\theta)\geq 2\eta\frac{f(0)}{2}\parens{1+\frac{\varepsilon}{2}}^k\rightarrow\infty
+	\end{equation*}
+	while
+	\begin{equation*}
+		\int_{\eta\leq\abs{\theta}<\delta}f(\theta)p_k(\theta)\geq 0
+	\end{equation*}
+	and the rest of the integral is finite for continuous and integrable (and therefore bounded) $f$.
+\end{proof}
 
 \begin{proof}[Proof of \Cref{theorem:Fourier-converge}]
 TODO
 \end{proof}
+
+\subsection{A Tail Bound for Discrete Gaussian}
+
+Using the machinery developed so far,
+we can also easily show a tail-bound for the discrete Gaussian.
+One simply shows that discrete Gaussian is a \emph{subgaussian} distribution,
+then use the tail bounds for subgaussian distributions.
+
+\begin{definition}[subgaussian distributions]
+	TODO
+\end{definition}
+
+We show that the discrete Gaussian satisfies the Laplace tail \Ethan{?} property...
+\begin{lemma}
+	TODO
+\end{lemma}
+
+Next we give a standard result that Laplace property implies the tail...
+\begin{lemma}
+	TODO
+\end{lemma}
 
 \bibliographystyle{plain}
 \bibliography{references}
