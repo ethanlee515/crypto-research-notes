@@ -236,9 +236,10 @@ We next take the proofs of \Cref{lemma:DG-renyi-bound} and \Cref{lemma:norm-shif
 		&=\abs{\sum_{y\in\bbZ}\hat{f}(y)e^{-2\pi iy\mu}} \\
 		&\leq\sum_{y\in\bbZ}\abs{\hat{f}(y)e^{-2\pi iy\mu}} \\
 		&=\sum_{y\in\bbZ}\hat{f}(y) \\
-		&=\sum_{x\in\bbZ}f(x) \\
+		&=\sum_{x\in\bbZ}f(x) \label{eq:use-Poisson} \\
 		&=\sum_{x\in\bbZ}e^{-x/2\sigma^2}
 	\end{align}
+	where \Cref{eq:use-Poisson} is again due to \Cref{lemma:Poisson-summation}.
 \end{proof}
 
 \begin{proof}[Proof of \Cref{lemma:DG-renyi-bound}]
