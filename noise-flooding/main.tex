@@ -59,15 +59,16 @@ We first define the R\'enyi divergence.
 	\end{equation}
 \end{definition}
 
-We can then write KL divergence in terms of R\'enyi divergence.
+We can write KL divergence in terms of R\'enyi divergence.
 Though this is generally true even for continuous distributions,
-we assume the distributions are discrete Gaussians to avoid some complications.
+we assume the distributions are discrete Gaussians to simplify some arguments.
 \begin{lemma}
 	\label{lemma:KL-renyi}
 	For discrete Gaussians distributions $\cP$ and $\cQ$,
 	\begin{equation}
 		\KL{\cP}{\cQ} = \lim_{\alpha\rightarrow 1}\renyi{\cP}{\cQ}
 	\end{equation}
+	if the limit exists.
 \end{lemma}
 
 Thus it suffices to show that
@@ -117,7 +118,7 @@ There are many different criteria and types of convergence for Fourier series;
 here we use the following version.
 \begin{theorem}
 	\label{theorem:Fourier-converge}
-	Let $f$ be continuous and periodic on $[0, 1)$, and
+	Let $f$ be continuous and periodic on $[0, 1]$, and
 	\begin{equation}
 		\sum_{k\in\bbZ}\abs{\hat{f}(k)}<\infty,
 	\end{equation}
@@ -129,7 +130,7 @@ here we use the following version.
 Finally, the convergence theorem above uses the fact that Fourier series is unique.
 \begin{theorem}
 	\label{theorem:Fourier-unique}
-	Suppose $f$ is continuous and periodic on $[0, 1)$, and satisfies $\int f<\infty$ and also $\hat{f}(k)=0$ for all $k\in\bbZ$, then $f=0$.
+	Suppose $f$ is continuous and periodic on $[0, 1]$, and satisfies $\int f<\infty$ and also $\hat{f}(k)=0$ for all $k\in\bbZ$, then $f=0$.
 \end{theorem}
 
 We additionally need a theorem on sufficient conditions for deriving infinite sums.
@@ -142,7 +143,7 @@ We additionally need a theorem on sufficient conditions for deriving infinite su
 
 \section{Proofs of the lemmas}
 
-We present the proofs in roughly reverse order, so that no proof uses a yet-unproven fact.
+We present the proofs in roughly reverse order, so that no proof uses anything unproven.
 We omit the proof for \Cref{theorem:exchange-sum-and-integral} since it's clearly true for Riemann integrals.
 First, \Cref{theorem:Fourier-unique} and \Cref{theorem:Fourier-converge} are standard material found in textbooks such as \cite{fourier-textbook}.
 We include their proofs here for completeness.
