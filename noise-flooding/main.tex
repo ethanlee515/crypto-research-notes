@@ -255,10 +255,11 @@ We next take the proofs of \Cref{lemma:DG-renyi-bound} and \Cref{lemma:norm-shif
 				\frac{e^{-x^2/2\sigma^2}}{\sum_y e^{-y^2/2\sigma^2}}
 			}^{1-\alpha}\\
 		&\qquad=\frac{\sum_x e^{\parens{-x^2+2\alpha\mu x-\alpha\mu^2}/2\sigma^2}}{\sum_y e^{-y^2/2\sigma^2}}\\
-		&\qquad=e^{\alpha(\alpha-1)}\cdot\frac{\sum_x e^{-\parens{x-\alpha\mu}^2/2\sigma^2}}{\sum_y e^{-y^2/2\sigma^2}}\\
-		&\qquad\leq e^{\alpha(\alpha-1)}
+		&\qquad=e^{\alpha(\alpha-1)\mu^2/2\sigma^2}\cdot\frac{\sum_x e^{-\parens{x-\alpha\mu}^2/2\sigma^2}}{\sum_y e^{-y^2/2\sigma^2}}\\
+		&\qquad\leq e^{\alpha(\alpha-1)\mu^2/2\sigma^2}
 	\end{align}
 	where the final inequality is due to \Cref{lemma:norm-shifted-DG}.
+	The conclusion follows from monotonicity of the exponential.
 \end{proof}
 
 Before finishing the proof, we need a fact on derivatives of infinite sum.
