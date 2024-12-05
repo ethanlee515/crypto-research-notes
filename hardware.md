@@ -14,7 +14,8 @@ Non-exhausive list of papers below, mostly from TCHES.
 |Efficient ASIC Architecture for Low Latency Classic McEliece Decoding| PQC |Verilog, SystemVerilog, Cadence Genus and Innovus software systems|TCHES 2024| N/A|
 
 There is also a lot of C. Embedded and/or system-on-chip stuff.
-Some papers are a bit unclear as well, in terms of tools used.
+Some papers are a bit unclear in terms of tools used.
+No Bluespec as far as I see.
 
 ## OpenTitan Project
 
@@ -32,18 +33,22 @@ Isolated silicon region with tamper-proof memory, crypto accelerators, voltage a
 
 # Industry
 
-Main examples:
+Mostly handled by "security co-processors". Component in:
 * Government-issued ID such as passports
 * Credit card chips
 * SIM cards
 
 Easy to find providers, but difficult to find the underlying technique.
-Things are not open source.
+Many things are not open source.
 
-* IBM [security co-processors](https://www.ibm.com/products/pcie-cryptographic-coprocessor)
+* Texas Instrumments [AES co-processor](https://www.ti.com/lit/an/swra172c/swra172c.pdf?ts=1733426764215): specific input/output registers, connect to SoC memory using DMA channels.
+* IBM [security co-processors](https://www.ibm.com/products/pcie-cryptographic-coprocessor): PCIe card
+* Infineon Technologies:
+  Security co-processor such as  ["SLE 78"](https://www.infineon.com/cms/en/product/security-smart-card-solutions/security-controllers/contactless-and-dual-interface-security-controllers/sle-78clfx1m10ph/) series.
+  Used in chips [for >50% EU passports and >75% Asia-Pacific passports](https://www.infineon.com/cms/en/applications/security-solutions/government-identification/electronic-passport/).
 * Apple [Secure Enclave](https://support.apple.com/guide/security/secure-enclave-sec59b0b31ff/web) in most iPhone, iPad, and Mac. Includes an AES engine and public key accelerator.
-* Google Titan M, Samsung Knox, and Microsoft Pluton similar as above
-* Thales Group: [US passport](https://www.businesswire.com/news/home/20230510005013/en/Thales-awarded-multi-year-contract-for-new-generation-US-Passport-eCovers), [Belgium passport](https://www.biometricupdate.com/202010/thales-zetes-contracted-for-embedded-biometrics-and-forgery-protections-of-new-belgian-passports), [SIM cards for mobile provider companies](https://www.thalesgroup.com/en/markets/digital-identity-and-security/mobile/secure-elements/SIM-product-offer), [mass deployment for credit card issuers](https://www.thalesgroup.com/en/markets/digital-identity-and-security/banking-payment/cards/emv/value-payment-cards)
-* IDEMIA annd NXP Semiconductors: similar as above
-* Infineon Technologies: [Chips for >50% EU passports and >75% Asia-Pacific passports](https://www.infineon.com/cms/en/applications/security-solutions/government-identification/electronic-passport/).
-  Security co-processor such as  ["SLE 78CLFX1M10PH"](https://www.infineon.com/cms/en/product/security-smart-card-solutions/security-controllers/contactless-and-dual-interface-security-controllers/sle-78clfx1m10ph/).
+* Google Titan M, Samsung Knox, and Microsoft Pluton: similar as above
+* NXP Semiconductors: Ready-to-use chips (for embedding), cards (to plug into motherboard), microcontrollers (program into payment terminals),
+* [Synopsys Cryptography IP](https://www.synopsys.com/designware-ip/security-ip/cryptography-ip.html): Don't know full story here yet.
+* Thales Group: Not sure of the full story here yet. Maybe they do their own hardware design, or get ready-to-use chips from elsewhere?
+  [US passport](https://www.businesswire.com/news/home/20230510005013/en/Thales-awarded-multi-year-contract-for-new-generation-US-Passport-eCovers), [Belgium passport](https://www.biometricupdate.com/202010/thales-zetes-contracted-for-embedded-biometrics-and-forgery-protections-of-new-belgian-passports), [SIM cards for mobile provider companies](https://www.thalesgroup.com/en/markets/digital-identity-and-security/mobile/secure-elements/SIM-product-offer), [mass deployment for credit card issuers](https://www.thalesgroup.com/en/markets/digital-identity-and-security/banking-payment/cards/emv/value-payment-cards)
